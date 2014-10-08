@@ -1,6 +1,6 @@
 # класс игры 2048
 class Game2048
-  attr_reader :pole, :napravlenie
+  attr_reader :pole, :napravlenie, :flag_drive, :flag_sum, :schet
   def initialize
     @pole=[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] # игровое поле
     @m = 4 # ширина поля
@@ -8,6 +8,7 @@ class Game2048
     @null_yacheek = 0 # количество свободных ячеек
     @flag_sum = 0 # флаг проверки было-ли суммирование
     @flag_drive = 0 # флаг проверки было-ли движение
+    @schet = 0
   end
   
   # выбор координат направления движения
@@ -43,6 +44,7 @@ class Game2048
           if iz > -1 and jz > -1 and @pole[i][j] == @pole[iz][jz] 
             @pole[iz][jz] += @pole[i][j]
             @pole[i][j] = 0
+            @schet += @pole[iz][jz]
             iz = -1
             jz = -1
             @flag_sum = 1 if @flag_sum == 0
@@ -135,8 +137,9 @@ class Game2048
   
   # проверка на заполненное поле и окончание игры
   def end_game
+
     kolichestvo_null
-    @null_yacheek == 0 and @flag_drive == 0 and @flag_sum == 0
+    @null_yacheek == 0 and @flag_drive == 0 and @flag_sum == 0 and check_smegnye_yachejki == 0
   end
   
   # старт игры
@@ -179,7 +182,26 @@ class Game2048
     }
     puts "="*5*4
   end
+  
+  
+  def gtk_dvigenie_add_znachenie napravlenie_dvigeniya
+          @napravlenie = napravlenie_dvigeniya
+          peredvigenie
+          new_znachenie if flag_drive > 0 or flag_sum>0
+  end
+
+#  проверка на смежные ячейки
+  def check_smegnye_yachejki
+    @smegnye_yachejki = 0
+    mm = @m - 1
+    nn = @n - 1
+    0.upto(mm){|i|
+      0.upto(nn){|j|
+        @smegnye_yachejki += 1 if j != mm and @pole[i][j] == @pole[i][j+1]
+        @smegnye_yachejki += 1 if i != nn and @pole[i][j] == @pole[i+1][j]
+      }
+    } if @null_yacheek == 0
+    @smegnye_yachejki
+  end
 end
 
-x = Game2048.new
-x.start_game_console
