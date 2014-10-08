@@ -2,6 +2,10 @@
 class Game2048
   attr_reader :pole, :napravlenie, :flag_drive, :flag_sum, :schet
   def initialize
+    new_game
+  end
+  
+  def new_game
     @pole=[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] # игровое поле
     @m = 4 # ширина поля
     @n = 4 #  длина поля
@@ -9,6 +13,8 @@ class Game2048
     @flag_sum = 0 # флаг проверки было-ли суммирование
     @flag_drive = 0 # флаг проверки было-ли движение
     @schet = 0
+    new_znachenie
+    new_znachenie
   end
   
   # выбор координат направления движения

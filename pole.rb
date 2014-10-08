@@ -45,21 +45,19 @@ class Pole < Gtk::DrawingArea
   end
     
   def on_timer
-    if @inGame
+#    if @inGame
       queue_draw
       @inGame = !@game2048.end_game
-      return true
-    else
-      return false
-    end
+       true
+#    else
+#      false
+#    end
   end
     
   def init_game
 
     @inGame = true
 
-    @game2048.new_znachenie
-    @game2048.new_znachenie
     GLib::Timeout.add(DELAY) { on_timer }
   end   
         
@@ -146,6 +144,9 @@ class Pole < Gtk::DrawingArea
         5
       when Gdk::Keyval::GDK_KEY_Down
         2
+      when Gdk::Keyval::GDK_KEY_N, Gdk::Keyval::GDK_KEY_n
+        @game2048.new_game
+        0
       else
         0
     end
