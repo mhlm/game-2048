@@ -136,15 +136,15 @@ class Pole < Gtk::DrawingArea
     key = event.keyval
     
     napravlenie = case key
-      when Gdk::Keyval::GDK_KEY_Left
+      when 65361 #Gdk::Keyval::GDK_KEY_Left
         1
-      when Gdk::Keyval::GDK_KEY_Right
+      when 65363 #Gdk::Keyval::GDK_KEY_Right
         3
-      when Gdk::Keyval::GDK_KEY_Up
+      when 65362 #Gdk::Keyval::GDK_KEY_Up
         5
-      when Gdk::Keyval::GDK_KEY_Down
+      when 65364 #Gdk::Keyval::GDK_KEY_Down
         2
-      when Gdk::Keyval::GDK_KEY_N, Gdk::Keyval::GDK_KEY_n
+      when 78, 110 #Gdk::Keyval::GDK_KEY_N, Gdk::Keyval::GDK_KEY_n
         @game2048.new_game
         0
       else
