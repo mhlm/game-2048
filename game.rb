@@ -1,16 +1,5 @@
 #!/usr/bin/ruby
 
-'''
-ZetCode Ruby GTK tutorial
-
-This is a simple Nibbles game
-clone.
-
-Author: Jan Bodnar
-Website: www.zetcode.com
-Last modified: May 2014
-'''
-
 require 'gtk3'
 require './pole'
 
