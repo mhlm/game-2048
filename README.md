@@ -1,11 +1,8 @@
-Install 
+### Install 
 
-ruby 2.0
+- ruby 2.0  
+- gem install gtk3  
+- GTK  
 
-gem install gtk3
-
-GTK
-
-Start game ruby game.rb
-
-New game 'n' or 'N'
+Start game ruby game.rb  
+New game 'n' or 'N'  
