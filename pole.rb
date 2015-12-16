@@ -34,7 +34,8 @@ class Pole < Gtk::DrawingArea
         256 => {"r" => (38/256.0), "g" => (86/256.0), "b" => (241/256.0)},
         512 => {"r" => (237/256.0), "g" => (18/256.0), "b" => (193/256.0)},
         1024 => {"r" => (236/256.0), "g" => (119/256.0), "b" => (15/256.0)},
-        2048 => {"r" => (239/256.0), "g" => (17/256.0), "b" => (22/256.0)}
+        2048 => {"r" => (239/256.0), "g" => (17/256.0), "b" => (22/256.0)},
+        2049 => {"r" => (1.0), "g" => (1.0), "b" => (1.0)}
       }
 
       signal_connect "draw" do  
@@ -83,7 +84,8 @@ class Pole < Gtk::DrawingArea
         kx = @x + (@width + @interval) * j
         ky = @y + @pole_rezultat + (@height + @interval) * i
 
-        cr.set_source_rgb @colors_rgb[pole[i][j]]["r"], @colors_rgb[pole[i][j]]["g"], @colors_rgb[pole[i][j]]["b"]
+        color_cell = pole[i][j] > 2048 ? 2049 : pole[i][j]
+        cr.set_source_rgb @colors_rgb[color_cell]["r"], @colors_rgb[color_cell]["g"], @colors_rgb[color_cell]["b"]
         cr.rectangle kx, ky, @width, @height
         cr.fill          
         if pole[i][j] != 0
